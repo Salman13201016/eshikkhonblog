@@ -12,8 +12,9 @@
         u_mobile VARCHAR(255) NOT NULL,
         u_email VARCHAR(255) NOT NULL,
         u_university VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP,
-        updated_at TIMESTAMP
+        vkey VARCHAR(255) NOT NULL,
+        verified int,
+        u_password VARCHAR(255) NOT NULL
     )";
 
     if (mysqli_query($conn, $sql)) {
