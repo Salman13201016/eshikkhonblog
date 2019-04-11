@@ -11,17 +11,14 @@
         $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
         $mobile = mysqli_real_escape_string($conn,$_POST['mobile']);
         $university = mysqli_real_escape_string($conn,$_POST['university']);
-        $error .=  '<span>"'.$mobile.'"</span>';
-        $email_exist = "SELECT u_email FROM user WHERE u_email =.$email LIMIT 1";
+
+        $email_exist = "SELECT u_email FROM user WHERE u_email ='$email' LIMIT 1";
         $email_exist = mysqli_query($conn,$email_exist);
-        $error .=  '<span>"'.strlen($email_exist).'"</span><br>';
-        if(strlen($email_exist)>=1){
+
+        if(mysqli_num_rows  ($email_exist)>1){
             $error .= '<span> Your Email is already existed </span>';
         }
-        // if(mysqli_num_rows  ($email_exist)==1){
-        //     $error .= '<span> Your Email is already existed </span>';
-        // }
-        elseif($fullname==NULL || $email==NULL || $password ==NULL || $confirm_password ==NULL || $mobile = NULL ||  $university ==NULL){
+        elseif($fullname==NULL || $email==NULL || $password ==NULL || $confirm_password ==NULL || $mobile == NULL ||  $university ==NULL){
             $error .=  '<span style = "float:left;"> Required Field </span>';
         }
         elseif(strlen($fullname) <5){
@@ -30,30 +27,23 @@
         elseif($password != $confirm_password){
             $error .=  '<span> Your Password does not match </span>';
         }
-        // Email exist or not check  
-        // elseif(mysqli_num_rows($email)>=1){
-        //     $error .= '<span> Your Email is already existed </span>';
-        // }
-        // elseif(strlen($mobile) <11){
-        //     $error .=  '<span> Your Mobile Length must be at least 11 number </span>';
-        // }
+
         
         else{
             $password = md5($password);
-            $vkey = md5(time().$fullname);
-            $error .=  '<span>"'.$mobile.'"</span><br>';
-            $sql = "INSERT INTO user (`u_name`,`u_mobile`,`u_email`,`u_university`,`vkey`,`verified`,`u_password`) VALUES ('$fullname','$mobile','$email','$password','$university','$vkey',0,'$password')";
+            $vkey = md5(time().$email);
+            $sql = "INSERT INTO user (`u_name`,`u_mobile`,`u_email`,`u_university`,`vkey`,`verified`,`u_password`) VALUES ('$fullname','$mobile','$email','$university','$vkey',0,'$password')";
             $result = mysqli_query($conn,$sql);
-            $error .=  '<span>"'.strlen($result).'"</span>';
+            
             if($result){
                 $error .=  '<span> Succesfully Inserted </span>'; 
             }
             else{
-                $error.='<span>"'. $sql . "<br>" .mysqli_error($result).'"</span>';
+                $error.='<span>"'. $sql . "<br>" .mysqli_error($con).'"</span>';
             }
-            $error .=  '<span>"'.$mobile.'"</span>';
-            $error .=  '<br><span>"'.$mobile.'"</span><br>';
+            
         }
+        
               
     }
    
