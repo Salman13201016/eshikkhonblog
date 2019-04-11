@@ -14,8 +14,8 @@
 
         $email_exist = "SELECT u_email FROM user WHERE u_email ='$email' LIMIT 1";
         $email_exist = mysqli_query($conn,$email_exist);
-
-        if(mysqli_num_rows  ($email_exist)>1){
+        //
+        if(mysqli_num_rows  ($email_exist)>=1){
             $error .= '<span> Your Email is already existed </span>';
         }
         elseif($fullname==NULL || $email==NULL || $password ==NULL || $confirm_password ==NULL || $mobile == NULL ||  $university ==NULL){
@@ -59,7 +59,7 @@
 <html lang="en" class="fullscreen-bg">
 
 <head>
-	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
+	<title>Registration | eShikkhon Blog</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -89,7 +89,7 @@
 								<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>
 								<p class="lead">Sign Up</p>
 							</div>
-							<form class="form-auth-small" action="#" method="POST">
+							<form class="form-auth-small" action="success.php" method="POST">
 								<div class="form-group">
 									<label for="fullname" class="control-label sr-only">Full Name</label>
 									<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Your Full Name">
