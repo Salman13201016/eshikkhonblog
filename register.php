@@ -36,7 +36,15 @@
             $result = mysqli_query($conn,$sql);
             
             if($result){
-                $error .=  '<span> Succesfully Inserted </span>'; 
+                $to = $email;
+                $subject = "Email Verification from eshikkhonBlog";
+                $message = "<a href='http://localhost/eShikkhon/Blog/blog/verify.php?vkey=$vkey'>Click this Activation Link</a>";
+                $hearders = "From: salmanmdsultan@gmail.com";
+                $headers .= "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-Type: text/html; charset=utf-8"."\r\n";
+                mail($to,$subject,$message,$headers);
+                header('location:success.php');
+
             }
             else{
                 $error.='<span>"'. $sql . "<br>" .mysqli_error($con).'"</span>';
@@ -89,7 +97,7 @@
 								<div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>
 								<p class="lead">Sign Up</p>
 							</div>
-							<form class="form-auth-small" action="success.php" method="POST">
+							<form class="form-auth-small" action="" method="POST">
 								<div class="form-group">
 									<label for="fullname" class="control-label sr-only">Full Name</label>
 									<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter Your Full Name">

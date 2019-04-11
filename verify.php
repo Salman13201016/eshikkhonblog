@@ -1,3 +1,6 @@
+
+
+
 <html>
 <head>
 	<title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
@@ -16,31 +19,37 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 </head>
 <body>
-    <!-- <div class="container">
+    <?php
+        if (isset($_GET['vkey'])){
+            
+        }
+        else{
+            echo '
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-sm-6 col-sm-offset-3">
+                        <br><br> <h2 style="color:#0fad00">Success</h2>
+                        <h3>Dear User</h3>
+                        <p style="font-size:20px;color:#5C5C5C;">
+                            Something Went Wrong
+                        </p>
+                        </div>
+                        
+                    </div>
+                </div>';
+        }
+    ?>
+    <div class="container">
         <div class="row text-center">
             <div class="col-sm-6 col-sm-offset-3">
             <br><br> <h2 style="color:#0fad00">Success</h2>
             <h3>Dear User</h3>
-            <p style="font-size:20px;color:#5C5C5C;">Thank you for your registration.We have sent you a activation key in your email address to verify your account.
-                Please go to your email now and login.
+            <p style="font-size:20px;color:#5C5C5C;">
+                You account is verified
             </p>
             </div>
             
         </div>
-    </div> -->
+    </div>
 </body>    
 </html>
-<?php 
-  $to = "salmanmdsultan@gmail.com"; 
-  $sub = "Generic Mail"; 
-  $msg="Hello Geek! This is a generic email."; 
-  $headers = 'From: salmanmdsultan@gmail.com' . "\r\n";
-  $headers .= "MIME-Version: 1.0" . "\r\n";
-  $headers .= "Content-Type: text/html; charset=utf-8"."\r\n";
-  $result = mail($to,$sub,$msg,$headers);
-  var_dump($result);
-  if (mail($to,$sub,$msg,$headers)) 
-      echo "Your Mail is sent successfully."; 
-  else
-      echo "Your Mail is not sent. Try Again."; 
-?>  
