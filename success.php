@@ -31,16 +31,63 @@
 </body>    
 </html>
 <?php 
-  $to = "salmanmdsultan@gmail.com"; 
-  $sub = "Generic Mail"; 
-  $msg="Hello Geek! This is a generic email."; 
-  $headers = 'From: salmanmdsultan@gmail.com' . "\r\n";
-  $headers .= "MIME-Version: 1.0" . "\r\n";
-  $headers .= "Content-Type: text/html; charset=utf-8"."\r\n";
-  $result = mail($to,$sub,$msg,$headers);
-  var_dump($result);
-  if (mail($to,$sub,$msg,$headers)) 
-      echo "Your Mail is sent successfully."; 
-  else
-      echo "Your Mail is not sent. Try Again."; 
-?>  
+//   $to = "sultanmohammadsalman@gmail.com"; 
+//   $sub = "Generic Mail"; 
+//   $msg="Hello Geek! This is a generic email."; 
+//   $headers = 'From: salmanmdsultan@gmail.com' . "\r\n";
+//   $headers .= "MIME-Version: 1.0" . "\r\n";
+//   $headers .= "Content-Type: text/html; charset=utf-8"."\r\n";
+//   $result = mail($to,$sub,$msg,$headers);
+//   var_dump($result);
+//   if (mail($to,$sub,$msg,$headers)) 
+//       echo "Your Mail is sent successfully."; 
+//   else
+//       echo "Your Mail is not sent. Try Again."; 
+?> 
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+$mail = new PHPMailer;
+
+//Enable SMTP debugging. 
+// $mail->SMTPDebug = 3;                               
+//Set PHPMailer to use SMTP.
+$mail->isSMTP();            
+//Set SMTP host name                          
+$mail->Host = "smtp.gmail.com";
+//Set this to true if SMTP host requires authentication to send email
+$mail->SMTPAuth = true;                          
+//Provide username and password     
+$mail->Username = "salmanmdsultan@gmail.com";                 
+$mail->Password = "Allahisone244343244343";                           
+//If SMTP requires TLS encryption then set it
+$mail->SMTPSecure = "tls";                           
+//Set TCP port to connect to 
+$mail->Port = 587;                                   
+
+$mail->From = "salmanmdsultan@gmail.com";
+$mail->FromName = "Salman";
+
+$mail->addAddress("sultanmohammadsalman@gmail.com", "Salman");
+
+$mail->isHTML(true);
+
+$mail->Subject = "Subject Text";
+$mail->Body = "<i>Mail body in HTML</i>";
+$mail->AltBody = "This is the plain text version of the email content";
+
+if(!$mail->send()) 
+{
+    echo "Mailer Error: " . $mail->ErrorInfo;
+} 
+else 
+{
+    echo "Message has been sent successfully";
+}
+?> 
