@@ -94,7 +94,7 @@
 					</ul>
 				</nav>
 			</div>
-		</div>
+		</div>	
 		<!-- END LEFT SIDEBAR -->
 	<!-- Javascript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -103,6 +103,7 @@
 	<script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
 	<script src="assets/vendor/chartist/js/chartist.min.js"></script>
 	<script src="assets/scripts/klorofil-common.js"></script>
+	<script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 	<script>
 	$(function() {
 		var data, options;

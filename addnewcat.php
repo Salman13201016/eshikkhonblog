@@ -53,11 +53,12 @@
 		</footer>
 	</div>
 	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slimscroll.min.js"></script>
-	<script src="js/klorofil-common.js"></script>
+	 <script type="application/x-javascript">
+
+tinymce.init({selector:'#details'});
+
+</script>
+
 </body>
 
 </html>
