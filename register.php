@@ -1,5 +1,11 @@
 <?php
-    include "database/connect.php";
+	include "database/connect.php";
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
+	require 'phpmailer/src/Exception.php';
+	require 'phpmailer/src/PHPMailer.php';
+	require 'phpmailer/src/SMTP.php';
     $error = NULL;
     
     // get the form data
@@ -36,13 +42,42 @@
             $result = mysqli_query($conn,$sql);
             
             if($result){
-                $to = $email;
-                $subject = "Email Verification from eshikkhonBlog";
-                $message = "<a href='http://localhost/eShikkhon/Blog/blog/verify.php?vkey=$vkey'>Click this Activation Link</a>";
-                $hearders = "From: salmanmdsultan@gmail.com";
-                $headers .= "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-Type: text/html; charset=utf-8"."\r\n";
-                mail($to,$subject,$message,$headers);
+				$mail = new PHPMailer;
+
+				//Enable SMTP debugging. 
+				// $mail->SMTPDebug = 3;                               
+				//Set PHPMailer to use SMTP.
+				$mail->isSMTP();            
+				//Set SMTP host name                          
+				$mail->Host = "smtp.gmail.com";
+				//Set this to true if SMTP host requires authentication to send email
+				$mail->SMTPAuth = true;                          
+				//Provide username and password     
+				$mail->Username = "salmanmdsultan@gmail.com";                 
+				$mail->Password = "Allahisone244343244343";                           
+				//If SMTP requires TLS encryption then set it
+				$mail->SMTPSecure = "tls";                           
+				//Set TCP port to connect to 
+				$mail->Port = 587;                                   
+
+				$mail->From = "salmanmdsultan@gmail.com";
+				$mail->FromName = "Salman";
+
+				$mail->addAddress($email, "Salman");
+
+				$mail->isHTML(true);
+
+				$mail->Subject = "Email Verification from eshikkhonBlog";
+				$mail->Body = "<a href='http://localhost/eShikkhon/Blog/blog/verify.php?vkey=$vkey'>Click this Activation Link</a>";
+
+				if(!$mail->send()) 
+				{
+					echo "Mailer Error: " . $mail->ErrorInfo;
+				} 
+				else 
+				{
+					echo "Message has been sent successfully";
+				}
                 header('location:success.php');
 
             }

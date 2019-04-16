@@ -16,7 +16,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 </head>
 <body>
-    <!-- <div class="container">
+    <div class="container">
         <div class="row text-center">
             <div class="col-sm-6 col-sm-offset-3">
             <br><br> <h2 style="color:#0fad00">Success</h2>
@@ -27,7 +27,7 @@
             </div>
             
         </div>
-    </div> -->
+    </div>
 </body>    
 </html>
 <?php 
@@ -46,21 +46,21 @@
 ?> 
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
+// require 'phpmailer/src/Exception.php';
+// require 'phpmailer/src/PHPMailer.php';
+// require 'phpmailer/src/SMTP.php';
 
-$mail = new PHPMailer;
+// $mail = new PHPMailer;
 
 //Enable SMTP debugging. 
 // $mail->SMTPDebug = 3;                               
 //Set PHPMailer to use SMTP.
-$mail->isSMTP();            
+// $mail->isSMTP();            
 //Set SMTP host name                          
-$mail->Host = "smtp.gmail.com";
+/***$mail->Host = "smtp.gmail.com";
 //Set this to true if SMTP host requires authentication to send email
 $mail->SMTPAuth = true;                          
 //Provide username and password     
@@ -78,9 +78,8 @@ $mail->addAddress("sultanmohammadsalman@gmail.com", "Salman");
 
 $mail->isHTML(true);
 
-$mail->Subject = "Subject Text";
-$mail->Body = "<i>Mail body in HTML</i>";
-$mail->AltBody = "This is the plain text version of the email content";
+$mail->Subject = "Email Verification from eshikkhonBlog";
+$mail->Body = "<a href='http://localhost/eShikkhon/Blog/blog/verify.php?vkey=$vkey'>Click this Activation Link</a>";
 
 if(!$mail->send()) 
 {
@@ -89,5 +88,5 @@ if(!$mail->send())
 else 
 {
     echo "Message has been sent successfully";
-}
+}***/
 ?> 

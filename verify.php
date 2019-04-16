@@ -1,4 +1,4 @@
-
+<?php include "database/connect.php"; $error = NULL;?>
 
 
 <html>
@@ -21,35 +21,62 @@
 <body>
     <?php
         if (isset($_GET['vkey'])){
-            
+            $vkey = $_GET['vkey'];
+            $sql = "SELECT vkey,verified FROM user WHERE verified =0 AND vkey = '$vkey' LIMIT 1";
+            $sql = mysqli_query($conn,$sql);
+            //var_dump($sql);
+            if(mysqli_num_rows($sql)>=1){
+                $sql = "UPDATE user SET verified = 1 WHERE vkey ='$vkey' LIMIT 1";
+                $sql = mysqli_query($conn,$sql);
+                if($sql){
+                    echo 
+                        '<div class="container">
+                            <div class="row text-center">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <h3>Dear User</h3>
+                                    <p style="font-size:20px;color:#5C5C5C;">
+                                        You email has been verified. you may now log in
+                                    </p>
+                                    <a href="register.php" class="btn btn-primary btn-lg btn-block"> Log in </a>
+                                </div>
+                                
+                            </div>
+                        </div>';
+                }
+                else{
+                    echo "Something went wrong " . mysqli_error($conn);
+                }
+            }
+            else{
+                echo '
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <h3>Dear User</h3>
+                                <p style="font-size:20px;color:#5C5C5C;">
+                                    Invalid email or existed email
+                                </p>
+                                <a href="register.php" class="btn btn-primary btn-lg btn-block"> Log in </a>
+                            </div>
+                            
+                        </div>
+                    </div>';
+            }
         }
         else{
             echo '
                 <div class="container">
                     <div class="row text-center">
                         <div class="col-sm-6 col-sm-offset-3">
-                        <br><br> <h2 style="color:#0fad00">Success</h2>
-                        <h3>Dear User</h3>
-                        <p style="font-size:20px;color:#5C5C5C;">
-                            Something Went Wrong
-                        </p>
+                            <h3>Dear User</h3>
+                            <p style="font-size:20px;color:#5C5C5C;">
+                                Something Went Wrong
+                            </p>
                         </div>
                         
                     </div>
                 </div>';
         }
     ?>
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-sm-6 col-sm-offset-3">
-            <br><br> <h2 style="color:#0fad00">Success</h2>
-            <h3>Dear User</h3>
-            <p style="font-size:20px;color:#5C5C5C;">
-                You account is verified
-            </p>
-            </div>
-            
-        </div>
-    </div>
 </body>    
 </html>
