@@ -35,6 +35,10 @@
 															while($row=mysqli_fetch_assoc($sql)){
 																echo "<td>". $row['cat_name']."</td>";
 																echo "<td>". $row['cat_details']."</td>";
+																echo "<td>
+																	<a class='btn btn-success' href='#'><i class='fa fa-edit'></i> </a> 
+																	<a class='btn btn-danger delete' href='#'><i class='fa fa-trash'></i> </a>
+																</td>";
 															}
 														}
 													?>
