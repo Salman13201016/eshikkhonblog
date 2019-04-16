@@ -78,10 +78,18 @@
 									<label for="password" class="control-label sr-only">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                     
-								</div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="fancy-checkbox element-left">
+                                        <input type="checkbox" name="remember" id="remember">
+                                        <span>Remember me</span>
+                                    </label>
+                                </div>
 
 								<button type="submit" class="btn btn-primary btn-lg btn-block" name = "submit">Sign Up</button>
-
+                                <div class="bottom">
+                                    <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+                                </div>
 							</form>
 						</div>
 					</div>
