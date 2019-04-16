@@ -1,6 +1,29 @@
 <?php 
 	include 'adminlayout.php';
 	
+	if(isset($_POST['submit'])){
+		$category = mysqli_real_escape_string($conn,$_POST['category']);
+		$details = mysqli_real_escape_string($conn,$_POST['details']);
+		$cat_exist = "SELECT cat_name FROM categories WHERE cat_name ='$category' LIMIT 1";
+        $cat_exist = mysqli_query($conn,$cat_exist);
+        //
+        if(mysqli_num_rows  ($cat_exist)>=1){
+            echo '<script> alert("The '.$category.'Category has already been existed") </script>';
+        }
+		elseif(empty($category) || empty($details) ){
+			echo '<script> alert("Name and Details are required") </script>';
+		}
+		else{
+			$sql = "INSERT INTO categories (cat_name,cat_details) VALUES ('$category','$details')";
+			$sql = mysqli_query($conn,$sql);
+			if($sql){
+				echo '<script> alert("'.$category.'Category added Successfully") </script>';
+			}
+			else{
+				echo '<script> alert("Something went wrong") </script>'.mysqli_error($conn);
+			}
+		}
+	}
 ?>
 		<!-- MAIN -->
 		<div class="main">
@@ -12,7 +35,7 @@
 
 						<!-- INPUTS -->
 						<div class="panel">
-							<form method ="POST" action="?">
+							<form method ="POST" action="">
 								<div class="panel-heading">
 									<h3 class="panel-title">Add Category</h3>
 								</div>
