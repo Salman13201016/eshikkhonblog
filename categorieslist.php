@@ -27,8 +27,9 @@
 											</thead>
 											
 											<tbody>
-												<tr>
-													<?php 
+												<?php
+												"<tr>".
+													 
 														$sql = "SELECT * FROM categories";
 														$sql = mysqli_query($conn,$sql);
 														if(mysqli_num_rows($sql)>=1){
@@ -41,8 +42,9 @@
 																</td>";
 															}
 														}
-													?>
-												</tr>
+													
+												"</tr>"
+												?>
 											</tbody>
 										</table>
 									</div>
@@ -66,10 +68,7 @@
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slimscroll.min.js"></script>
-	<script src="js/klorofil-common.js"></script>
+	
 </body>
 
 </html>
